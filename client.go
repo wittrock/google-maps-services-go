@@ -201,7 +201,12 @@ func (c *Client) post(ctx context.Context, config *apiConfig, apiReq interface{}
 }
 
 func (c *Client) getJSON(ctx context.Context, config *apiConfig, apiReq apiRequest, resp interface{}) error {
+	fmt.Printf("maps-client: Making request: %+v\n", apiReq)
 	httpResp, err := c.get(ctx, config, apiReq)
+	fmt.Printf("maps-client: Got response: %+v, err: %+v\n", httpResp, err)
+	if httpResp != nil && httpResp.Body != nil {}
+		fmt.Printf("maps-client: Got body: %+v\n", httpResp.Body, err)
+	}
 	if err != nil {
 		return err
 	}
