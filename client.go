@@ -169,6 +169,7 @@ func (c *Client) get(ctx context.Context, config *apiConfig, apiReq apiRequest) 
 		return nil, err
 	}
 	req.URL.RawQuery = q
+	fmt.Printf("maps-client: making HTTP request: %+v\n", req)
 	return ctxhttp.Do(ctx, c.httpClient, req)
 }
 
@@ -212,7 +213,8 @@ func (c *Client) getJSON(ctx context.Context, config *apiConfig, apiReq apiReque
 	}
 	defer httpResp.Body.Close()
 
-	return json.NewDecoder(httpResp.Body).Decode(resp)
+	err := json.NewDecoder(httpResp.Body).Decode(resp)
+	return err
 }
 
 func (c *Client) postJSON(ctx context.Context, config *apiConfig, apiReq interface{}, resp interface{}) error {
