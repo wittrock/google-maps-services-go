@@ -213,7 +213,7 @@ func (c *Client) getJSON(ctx context.Context, config *apiConfig, apiReq apiReque
 	}
 	defer httpResp.Body.Close()
 
-	err := json.NewDecoder(httpResp.Body).Decode(resp)
+	err = json.NewDecoder(httpResp.Body).Decode(resp)
 	return err
 }
 
